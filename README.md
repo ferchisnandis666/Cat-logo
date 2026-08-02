@@ -1,2 +1,2 @@
-# Cat-logo
+# Catalogo
 Galería virtual de Pepe Arenas
