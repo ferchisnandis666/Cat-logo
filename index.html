@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pepe Arenas — Artista Visual</title>
+  <meta name="description" content="Galería virtual y obra disponible de Pepe Arenas.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ==============================
+       CONFIGURACIÓN GENERAL
+    ============================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f3ee;
+      color: #161616;
+      font-family: "DM Sans", sans-serif;
+      font-weight: 300;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==============================
+       NAVEGACIÓN
+    ============================== */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0 5%;
+
+      background: rgba(245, 243, 238, 0.92);
+      backdrop-filter: blur(10px);
+
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 20px;
+      letter-spacing: 4px;
+      font-weight: 500;
+    }
+
+    .menu {
+      display: flex;
+      gap: 35px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .menu a {
+      opacity: 0.65;
+      transition: opacity 0.3s;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+    }
+
+    /* ==============================
+       PORTADA
+    ============================== */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 130px 7% 80px;
+    }
+
+    .hero-small {
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      opacity: 0.6;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+
+      font-size: clamp(70px, 11vw, 170px);
+      line-height: 0.85;
+      letter-spacing: -5px;
+    }
+
+    .hero h1 span {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-bottom {
+      margin-top: 70px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      border-top: 1px solid #aaa;
+      padding-top: 25px;
+    }
+
+    .hero-description {
+      max-width: 450px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .scroll {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.5;
+    }
+
+    /* ==============================
+       GALERÍA
+    ============================== */
+
+    .gallery-section {
+      background: #111;
+      color: white;
+
+      padding: 120px 5%;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      margin-bottom: 80px;
+    }
+
+    .section-number {
+      font-size: 12px;
+      opacity: 0.5;
+      letter-spacing: 2px;
+    }
+
+    .section-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 7vw, 90px);
+      font-weight: 400;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 70px 30px;
+    }
+
+    .artwork {
+      cursor: pointer;
+    }
+
+    .artwork:nth-child(1) {
+      grid-column: 1 / 7;
+    }
+
+    .artwork:nth-child(2) {
+      grid-column: 8 / 13;
+      margin-top: 150px;
+    }
+
+    .artwork:nth-child(3) {
+      grid-column: 2 / 8;
+    }
+
+    .artwork:nth-child(4) {
+      grid-column: 8 / 13;
+      margin-top: 100px;
+    }
+
+    .artwork-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+
+      overflow: hidden;
+      background: #292929;
+    }
+
+    .artwork-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition: transform 0.8s ease;
+    }
+
+    .artwork:hover img {
+      transform: scale(1.025);
+    }
+
+    .artwork-info {
+      display: flex;
+      justify-content: space-between;
+
+      padding-top: 15px;
+      border-top: 1px solid #444;
+
+      margin-top: 15px;
+    }
+
+    .artwork-title {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .artwork-year {
+      opacity: 0.5;
+      font-size: 13px;
+    }
+
+    /* PLACEHOLDERS */
+
+    .placeholder {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #242424,
+          #3c3a36
+        );
+
+      color: #777;
+      letter-spacing: 2px;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    /* ==============================
+       ARTISTA
+    ============================== */
+
+    .artist-section {
+      padding: 150px 7%;
+    }
+
+    .artist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .artist-photo {
+      aspect-ratio: 4 / 5;
+      background: #ddd;
+    }
+
+    .artist-content .label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 40px;
+    }
+
+    .artist-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 6vw, 85px);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 50px;
+    }
+
+    .artist-content p {
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 550px;
+      color: #555;
+    }
+
+    /* ==============================
+       CONTACTO
+    ============================== */
+
+    .contact {
+      background: #d8d3c8;
+
+      min-height: 75vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 100px 7%;
+    }
+
+    .contact-label {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 35px;
+    }
+
+    .contact h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 9vw, 130px);
+      font-weight: 400;
+      line-height: 0.95;
+
+      max-width: 1200px;
+    }
+
+    .contact h2 span {
+      font-style: italic;
+    }
+
+    .contact-button {
+      display: inline-block;
+
+      margin-top: 60px;
+      padding-bottom: 8px;
+
+      border-bottom: 1px solid #111;
+
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      width: fit-content;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    footer {
+      background: #111;
+      color: #aaa;
+
+      display: flex;
+      justify-content: space-between;
+
+      padding: 40px 5%;
+
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ==============================
+       VENTANA DE OBRA
+    ============================== */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      background: #f5f3ee;
+
+      z-index: 2000;
+
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: block;
+    }
+
+    .modal-close {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+
+      background: none;
+      border: none;
+
+      font-size: 30px;
+      cursor: pointer;
+
+      z-index: 2100;
+    }
+
+    .modal-content {
+      min-height: 100vh;
+
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+    }
+
+    .modal-image {
+      background: #222;
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 8%;
+    }
+
+    .modal-image-placeholder {
+      width: 70%;
+      aspect-ratio: 4 / 5;
+
+      background: #393734;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #777;
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+    }
+
+    .modal-details {
+      padding: 140px 10% 80px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-details h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 50px;
+      font-weight: 400;
+
+      margin-bottom: 15px;
+    }
+
+    .modal-author {
+      opacity: 0.5;
+      margin-bottom: 60px;
+    }
+
+    .technical {
+      border-top: 1px solid #bbb;
+    }
+
+    .technical-row {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 16px 0;
+
+      border-bottom: 1px solid #ccc;
+
+      font-size: 13px;
+    }
+
+    .technical-row span:first-child {
+      opacity: 0.5;
+    }
+
+    .available {
+      margin-top: 40px;
+
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .available::before {
+      content: "";
+      display: inline-block;
+
+      width: 7px;
+      height: 7px;
+
+      background: #446b45;
+      border-radius: 50%;
+
+      margin-right: 10px;
+    }
+
+    .inquire {
+      margin-top: 40px;
+
+      background: #111;
+      color: white;
+
+      border: none;
+
+      padding: 20px 25px;
+
+      cursor: pointer;
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      font-family: "DM Sans", sans-serif;
+    }
+
+    /* ==============================
+       CELULAR
+    ============================== */
+
+    @media (max-width: 768px) {
+
+      nav {
+        height: 70px;
+      }
+
+      .menu {
+        gap: 15px;
+        font-size: 10px;
+      }
+
+      .logo {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
+      .hero {
+        min-height: 90vh;
+      }
+
+      .hero h1 {
+        font-size: 20vw;
+        letter-spacing: -3px;
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+      }
+
+      .gallery-section {
+        padding: 80px 5%;
+      }
+
+      .gallery {
+        display: block;
+      }
+
+      .artwork {
+        margin: 0 0 70px 0 !important;
+      }
+
+      .artist-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image {
+        min-height: 65vh;
+      }
+
+      .modal-details {
+        padding: 70px 7%;
+      }
+
+      .modal-close {
+        top: 20px;
+        right: 20px;
+
+        background: #f5f3ee;
+
+        width: 45px;
+        height: 45px;
+
+        border-radius: 50%;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+<!-- ============================
+     NAVEGACIÓN
+============================ -->
+
+<nav>
+
+  <a href="#" class="logo">
+    PEPE ARENAS
+  </a>
+
+  <div class="menu">
+
+    <a href="#obra">Obra</a>
+
+    <a href="#artista">Artista</a>
+
+    <a href="#contacto">Contacto</a>
+
+  </div>
+
+</nav>
+
+
+<!-- ============================
+     PORTADA
+============================ -->
+
+<section class="hero">
+
+  <div class="hero-small">
+    Artista visual · México
+  </div>
+
+  <h1>
+    Pepe<br>
+    <span>Arenas</span>
+  </h1>
+
+  <div class="hero-bottom">
+
+    <p class="hero-description">
+      Una exploración de materia, memoria y forma.
+      Descubre obra original y piezas disponibles
+      del artista Pepe Arenas.
+    </p>
+
+    <div class="scroll">
+      Explorar ↓
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============================
+     OBRA DISPONIBLE
+============================ -->
+
+<section class="gallery-section" id="obra">
+
+  <div class="section-header">
+
+    <div>
+
+      <div class="section-number">
+        01 / OBRA
+      </div>
+
+      <h2>
+        Obra disponible
+      </h2>
+
+    </div>
+
+  </div>
+
+
+  <div class="gallery">
+
+
+    <!-- OBRA 1 -->
+
+    <article class="artwork"
+      onclick="openArtwork(
+      'Sin título I',
+      '2026',
+      'Óleo sobre tela',
+      '120 × 90 cm'
+      )">
+
+      <div class="artwork-image">
+
+        <div class="placeholder">
+          Fotografía de obra
+        </div>
+
+      </div>
+
+      <div class="artwork-info">
+
+        <div class="artwork-title">
+          Sin título I
+        </div>
+
+        <div class="artwork-year">
+          2026
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- OBRA 2 -->
+
+    <article class="artwork"
+      onclick="openArtwork(
+      'Sin título II',
+      '2025',
+      'Técnica mixta sobre tela',
+      '100 × 80 cm'
+      )">
+
+      <div class="artwork-image">
+
+        <div class="placeholder">
+          Fotografía de obra
+        </div>
+
+      </div>
+
+      <div class="artwork-info">
+
+        <div class="artwork-title">
+          Sin título II
+        </div>
+
+        <div class="artwork-year">
+          2025
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- OBRA 3 -->
+
+    <article class="artwork"
+      onclick="openArtwork(
+      'Sin título III',
+      '2025',
+      'Óleo sobre tela',
+      '150 × 120 cm'
+      )">
+
+      <div class="artwork-image">
+
+        <div class="placeholder">
+          Fotografía de obra
+        </div>
+
+      </div>
+
+      <div class="artwork-info">
+
+        <div class="artwork-title">
+          Sin título III
+        </div>
+
+        <div class="artwork-year">
+          2025
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- OBRA 4 -->
+
+    <article class="artwork"
+      onclick="openArtwork(
+      'Sin título IV',
+      '2024',
+      'Acrílico sobre tela',
+      '90 × 70 cm'
+      )">
+
+      <div class="artwork-image">
+
+        <div class="placeholder">
+          Fotografía de obra
+        </div>
+
+      </div>
+
+      <div class="artwork-info">
+
+        <div class="artwork-title">
+          Sin título IV
+        </div>
+
+        <div class="artwork-year">
+          2024
+        </div>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- ============================
+     ARTISTA
+============================ -->
+
+<section class="artist-section" id="artista">
+
+  <div class="artist-grid">
+
+    <div class="artist-photo placeholder">
+      Fotografía del artista
+    </div>
+
+    <div class="artist-content">
+
+      <div class="label">
+        02 / El artista
+      </div>
+
+      <h2>
+        Pepe<br>Arenas
+      </h2>
+
+      <p>
+        La obra de Pepe Arenas explora la materia,
+        el color y la expresión a través de una
+        trayectoria dedicada a las artes visuales.
+        <br><br>
+        Su trabajo ha formado parte de distintas
+        exhibiciones y espacios culturales,
+        desarrollando un lenguaje plástico propio
+        a lo largo de su carrera.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============================
+     CONTACTO
+============================ -->
+
+<section class="contact" id="contacto">
+
+  <div class="contact-label">
+    Adquisiciones · Obra disponible
+  </div>
+
+  <h2>
+    ¿Te interesa<br>
+    <span>una obra?</span>
+  </h2>
+
+  <!-- DESPUÉS CAMBIAREMOS ESTE ENLACE POR WHATSAPP -->
+
+  <a href="mailto:contacto@pepearenas.com"
+     class="contact-button">
+
+    Contactar al estudio →
+
+  </a>
+
+</section>
+
+
+<!-- ============================
+     FOOTER
+============================ -->
+
+<footer>
+
+  <div>
+    © 2026 Pepe Arenas
+  </div>
+
+  <div>
+    Artista visual · México
+  </div>
+
+</footer>
+
+
+<!-- ============================
+     MODAL / FICHA DE OBRA
+============================ -->
+
+<div class="modal" id="artModal">
+
+  <button class="modal-close"
+          onclick="closeArtwork()">
+
+    ×
+
+  </button>
+
+
+  <div class="modal-content">
+
+    <div class="modal-image">
+
+      <div class="modal-image-placeholder">
+        Fotografía de obra
+      </div>
+
+    </div>
+
+
+    <div class="modal-details">
+
+      <h2 id="modalTitle">
+        Nombre de obra
+      </h2>
+
+      <div class="modal-author">
+        Pepe Arenas
+      </div>
+
+
+      <div class="technical">
+
+        <div class="technical-row">
+
+          <span>Año</span>
+
+          <span id="modalYear">
+            2026
+          </span>
+
+        </div>
+
+
+        <div class="technical-row">
+
+          <span>Técnica</span>
+
+          <span id="modalTechnique">
+            Óleo sobre tela
+          </span>
+
+        </div>
+
+
+        <div class="technical-row">
+
+          <span>Medidas</span>
+
+          <span id="modalSize">
+            120 × 90 cm
+          </span>
+
+        </div>
+
+
+        <div class="technical-row">
+
+          <span>Autor</span>
+
+          <span>
+            Pepe Arenas
+          </span>
+
+        </div>
+
+
+        <div class="technical-row">
+
+          <span>Autenticidad</span>
+
+          <span>
+            Obra original
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="available">
+        Disponible
+      </div>
+
+
+      <button class="inquire"
+              onclick="contactArtwork()">
+
+        Solicitar información
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ============================
+     JAVASCRIPT
+============================ -->
+
+<script>
+
+  let selectedArtwork = "";
+
+
+  function openArtwork(
+    title,
+    year,
+    technique,
+    size
+  ) {
+
+    selectedArtwork = title;
+
+    document.getElementById("modalTitle").textContent = title;
+
+    document.getElementById("modalYear").textContent = year;
+
+    document.getElementById("modalTechnique").textContent = technique;
+
+    document.getElementById("modalSize").textContent = size;
+
+    document.getElementById("artModal").classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+  }
+
+
+  function closeArtwork() {
+
+    document.getElementById("artModal").classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  }
+
+
+  function contactArtwork() {
+
+    /*
+      DESPUÉS CAMBIAREMOS AQUÍ
+      EL NÚMERO DE WHATSAPP
+    */
+
+    const message =
+      "Hola, me interesa recibir información sobre la obra: "
+      + selectedArtwork
+      + " de Pepe Arenas.";
+
+    const url =
+      "https://wa.me/5210000000000?text="
+      + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+  }
+
+
+  /* CERRAR CON ESC */
+
+  document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+      closeArtwork();
+
+    }
+
+  });
+
+</script>
+
+
+</body>
+</html>
