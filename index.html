@@ -695,142 +695,9 @@
 
   </div>
 
-
-  <div class="gallery">
-
-
-    <!-- OBRA 1 -->
-
-    <article class="artwork"
-      onclick="openArtwork(
-      'Sin título I',
-      '2026',
-      'Óleo sobre tela',
-      '120 × 90 cm'
-      )">
-
-      <div class="artwork-image">
-
-       <img src="obra-01.png" alt="Obra de Pepe Arenas">
-        
-      </div>
-
-      <div class="artwork-info">
-
-        <div class="artwork-title">
-          Sin título I
-        </div>
-
-        <div class="artwork-year">
-          2026
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- OBRA 2 -->
-
-    <article class="artwork"
-      onclick="openArtwork(
-      'Sin título II',
-      '2025',
-      'Técnica mixta sobre tela',
-      '100 × 80 cm'
-      )">
-
-      <div class="artwork-image">
-
-        <div class="placeholder">
-          Fotografía de obra
-        </div>
-
-      </div>
-
-      <div class="artwork-info">
-
-        <div class="artwork-title">
-          Sin título II
-        </div>
-
-        <div class="artwork-year">
-          2025
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- OBRA 3 -->
-
-    <article class="artwork"
-      onclick="openArtwork(
-      'Sin título III',
-      '2025',
-      'Óleo sobre tela',
-      '150 × 120 cm'
-      )">
-
-      <div class="artwork-image">
-
-        <div class="placeholder">
-          Fotografía de obra
-        </div>
-
-      </div>
-
-      <div class="artwork-info">
-
-        <div class="artwork-title">
-          Sin título III
-        </div>
-
-        <div class="artwork-year">
-          2025
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- OBRA 4 -->
-
-    <article class="artwork"
-      onclick="openArtwork(
-      'Sin título IV',
-      '2024',
-      'Acrílico sobre tela',
-      '90 × 70 cm'
-      )">
-
-      <div class="artwork-image">
-
-        <div class="placeholder">
-          Fotografía de obra
-        </div>
-
-      </div>
-
-      <div class="artwork-info">
-
-        <div class="artwork-title">
-          Sin título IV
-        </div>
-
-        <div class="artwork-year">
-          2024
-        </div>
-
-      </div>
-
-    </article>
-
-
-  </div>
-
+<div class="gallery" id="gallery">
+</div>
+  
 </section>
 
 
@@ -932,15 +799,16 @@
   </button>
 
 
-  <div class="modal-content">
+ <div class="modal-image">
 
-    <div class="modal-image">
+  <img
+    id="modalArtworkImage"
+    src=""
+    alt="Obra de Pepe Arenas"
+    style="max-width:100%; max-height:84vh; object-fit:contain;"
+  >
 
-      <div class="modal-image-placeholder">
-        Fotografía de obra
-      </div>
-
-    </div>
+</div>
 
 
     <div class="modal-details">
@@ -1040,46 +908,138 @@
 
   let selectedArtwork = "";
 
+  /*
+  ==========================================
+  GALERÍA AUTOMÁTICA
+  ==========================================
+  */
+
+  const gallery = document.getElementById("gallery");
+
+  for (let i = 1; i <= 42; i++) {
+
+    const number = String(i).padStart(2, "0");
+
+    // La obra 01 todavía es PNG.
+    // Las obras 02 a 42 son JPG.
+    const extension = i === 1 ? "png" : "jpg";
+
+    const image = `obra-${number}.${extension}`;
+
+    const artwork = document.createElement("article");
+
+    artwork.className = "artwork";
+
+    artwork.onclick = function () {
+
+      openArtwork(
+        `Obra ${number}`,
+        "Por definir",
+        "Por definir",
+        "Por definir",
+        image
+      );
+
+    };
+
+    artwork.innerHTML = `
+
+      <div class="artwork-image">
+
+        <img
+          src="${image}"
+          alt="Obra ${number} — Pepe Arenas"
+          loading="lazy"
+        >
+
+      </div>
+
+      <div class="artwork-info">
+
+        <div class="artwork-title">
+          Obra ${number}
+        </div>
+
+        <div class="artwork-year">
+          —
+        </div>
+
+      </div>
+
+    `;
+
+    gallery.appendChild(artwork);
+
+  }
+
+
+  /*
+  ==========================================
+  ABRIR FICHA
+  ==========================================
+  */
 
   function openArtwork(
     title,
     year,
     technique,
-    size
+    size,
+    image
   ) {
 
     selectedArtwork = title;
 
-    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalTitle").textContent =
+      title;
 
-    document.getElementById("modalYear").textContent = year;
+    document.getElementById("modalYear").textContent =
+      year;
 
-    document.getElementById("modalTechnique").textContent = technique;
+    document.getElementById("modalTechnique").textContent =
+      technique;
 
-    document.getElementById("modalSize").textContent = size;
+    document.getElementById("modalSize").textContent =
+      size;
 
-    document.getElementById("artModal").classList.add("active");
+    document.getElementById("modalArtworkImage").src =
+      image;
+
+    document.getElementById("modalArtworkImage").alt =
+      title + " — Pepe Arenas";
+
+    document
+      .getElementById("artModal")
+      .classList.add("active");
 
     document.body.style.overflow = "hidden";
 
   }
 
 
+  /*
+  ==========================================
+  CERRAR FICHA
+  ==========================================
+  */
+
   function closeArtwork() {
 
-    document.getElementById("artModal").classList.remove("active");
+    document
+      .getElementById("artModal")
+      .classList.remove("active");
 
     document.body.style.overflow = "";
 
   }
 
 
-  function contactArtwork() {
+  /*
+  ==========================================
+  CONTACTO
+  ==========================================
+  */
 
-    /*
-      DESPUÉS CAMBIAREMOS AQUÍ
-      EL NÚMERO DE WHATSAPP
-    */
+  function contactArtwork() {
 
     const message =
       "Hola, me interesa recibir información sobre la obra: "
@@ -1095,17 +1055,22 @@
   }
 
 
-  /* CERRAR CON ESC */
+  /*
+  ==========================================
+  CERRAR CON ESC
+  ==========================================
+  */
 
-  document.addEventListener("keydown", function(event) {
+  document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (event.key === "Escape") {
-
-      closeArtwork();
+      if (event.key === "Escape") {
+        closeArtwork();
+      }
 
     }
-
-  });
+  );
 
 </script>
 
