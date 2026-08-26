@@ -916,7 +916,15 @@
 
   const gallery = document.getElementById("gallery");
 
-  for (let i = 1; i <= 42; i++) {
+const order = [
+  23, 19, 7, 12, 29, 4, 41, 38, 34,
+  31, 30, 20, 15, 10, 9, 8, 37, 24, 16,
+  1, 2, 3, 5, 6, 11, 13, 14, 17, 18,
+  21, 22, 25, 26, 27, 28, 32, 33, 35, 36,
+  39, 40, 42
+];
+
+for (const i of order) {
 
     const number = String(i).padStart(2, "0");
 
